@@ -40,10 +40,19 @@ Simple HTTP API for playing with `User` model.
 
 ## Setup
 
+please note for ubuntu os higher that 18.04 LST change the requirements to below.\
+
+```
+Flask>=1.1.2
+Flask-Cors>=3.0.8
+Jinja2>=2.11.2
+requests>=2.18.4
+pycodestyle>=2.6.0
+```
+
 ```
 $ pip3 install -r requirements.txt
 ```
-
 
 ## Run
 
