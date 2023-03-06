@@ -3,7 +3,7 @@ What authentication means\
 What Base64 is\
 How to encode a string in Base64\
 What Basic authentication means\
-How to send the Authorization header\
+How to send the Authorization header
 ## Requirements
 Python Scripts\
 All your files will be interpreted/compiled on Ubuntu 18.04 LTS using python3 (version 3.7)\
