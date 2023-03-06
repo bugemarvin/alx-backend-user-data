@@ -1,3 +1,5 @@
+# Basic authentication
+
 What authentication means\
 What Base64 is\
 How to encode a string in Base64\
@@ -17,9 +19,7 @@ All your classes should have a documentation `(python3 -c 'print(__import__("my_
 All your functions (inside and outside a class) should have a documentation `(python3 -c 'print(__import__("my_module").my_function.__doc__)'` and `python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')`\
 A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
-<div align=center>
 # Simple API
-</div>
 
 Simple HTTP API for playing with `User` model.
 
