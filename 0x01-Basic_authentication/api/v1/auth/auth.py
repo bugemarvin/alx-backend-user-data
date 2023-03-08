@@ -14,9 +14,11 @@ class Auth:
         '''
         self.path = path
         self.exclude_paths = excluded_paths
-        if path is None:
+        if excluded_paths == []:
             return True
-        elif excluded_paths is None and excluded_paths == []:
+        elif path is None:
+            return True
+        elif excluded_paths is None:
             return True
         else:
             for pwds in excluded_paths:
