@@ -21,7 +21,7 @@ class Auth:
         for pwds in excluded_paths:
             if path in pwds:
                 return False
-            else:
+            if not path in pwds:
                 return True
         return True
 
