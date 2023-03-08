@@ -21,6 +21,8 @@ class Auth:
         for pwds in excluded_paths:
             if path in pwds:
                 return False
+            else:
+                return True
         return True
 
     def authorization_header(self, request=None) -> str:
