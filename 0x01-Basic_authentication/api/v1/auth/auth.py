@@ -6,6 +6,9 @@ from typing import TypeVar, List
 
 
 class Auth:
+    '''defining athentication class
+    '''
+
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         '''ensuring that user is authenticated
         '''
