@@ -24,7 +24,8 @@ class Auth:
             for pwds in excluded_paths:
                 if path in pwds:
                     return False
-        return True
+                else:
+                    return True
 
     def authorization_header(self, request=None) -> str:
         '''creating user auth header for request
