@@ -16,7 +16,7 @@ class Auth:
         self.exclude_paths = excluded_paths
         if not path:
             return True
-        if not excluded_paths or excluded_paths == []:
+        if not excluded_paths or len(excluded_paths) == 0:
             return True
         for pwds in excluded_paths:
             if path in pwds:
@@ -28,12 +28,9 @@ class Auth:
         '''creating user auth header for request
         '''
         self.request = request
-        if not request:
+        if not request or not request.headers.get('Authorization'):
             return None
-        if not request or 'Authorization' not in request.headers:
-            return None
-        if request or 'Authorization' in request.headers:
-            return request.headers.get('Authorization')
+        return request.headers.get('Authorization')
 
     def current_user(self, request=None) -> TypeVar('User'):
         '''checking the current user

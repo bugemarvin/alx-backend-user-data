@@ -45,6 +45,7 @@ def before_request():
     '''
     if not auth:
         return
+
     if not auth.require_auth(request.path,
                              ['/api/v1/status/',
                               '/api/v1/unauthorized/',
