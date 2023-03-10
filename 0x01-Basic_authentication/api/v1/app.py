@@ -45,17 +45,15 @@ def before_request():
     '''
     if not auth:
         return
-    elif not auth.require_auth(request.path,
-                               ['/api/v1/status/',
-                                '/api/v1/unauthorized/',
-                                '/api/v1/forbidden/']):
+    if not auth.require_auth(request.path,
+                             ['/api/v1/status/',
+                              '/api/v1/unauthorized/',
+                              '/api/v1/forbidden/']):
         return
-    elif not auth.authorization_header(request):
+    if not auth.authorization_header(request):
         return abort(401)
-    elif not auth.current_user(request):
+    if not auth.current_user(request):
         return abort(403)
-    else:
-        return
 
 
 if __name__ == "__main__":
