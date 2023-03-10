@@ -16,15 +16,14 @@ class Auth:
         self.exclude_paths = excluded_paths
         if excluded_paths == []:
             return True
-        elif path is None:
+        if path is None:
             return True
-        elif excluded_paths is None:
+        if excluded_paths is None:
             return True
-        else:
-            for pwds in excluded_paths:
-                if path in pwds:
-                    return False
-        if not path in excluded_paths:
+        for pwds in excluded_paths:
+            if path in pwds:
+                return False
+        if path not in excluded_paths:
             return True
 
     def authorization_header(self, request=None) -> str:
