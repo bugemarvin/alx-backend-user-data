@@ -2,7 +2,7 @@
 '''managing api authentication
 '''
 from flask import request
-from typing import TypeVar, List
+from typing import Optional, TypeVar, List
 
 
 class Auth:
@@ -26,10 +26,12 @@ class Auth:
                     return False
         return True
 
-    def authorization_header(self, request=None) -> str:
+    def authorization_header(self, request=None) -> Optional[str]:
         '''creating user auth header for request
         '''
-        return request
+        if not request or not request.headers.has_key('Authorization'):
+            return None
+        return request.headers.get('Authorization')
 
     def current_user(self, request=None) -> TypeVar('User'):
         '''checking the current user
