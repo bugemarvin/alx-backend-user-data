@@ -26,7 +26,7 @@ class Auth:
                     return False
         return True
 
-    def authorization_header(self, request=None) -> Optional[str]:
+    def authorization_header(self, request=None) -> str:
         '''creating user auth header for request
         '''
         self.request = request

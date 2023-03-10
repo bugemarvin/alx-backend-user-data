@@ -41,6 +41,8 @@ def forbidden(error) -> str:
 
 @app.before_request
 def before_request():
+    '''safegaurding requests
+    '''
     if not auth:
         return
     elif not auth.require_auth(request.path,
