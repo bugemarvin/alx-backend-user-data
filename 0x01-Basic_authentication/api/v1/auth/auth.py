@@ -29,7 +29,10 @@ class Auth:
     def authorization_header(self, request=None) -> Optional[str]:
         '''creating user auth header for request
         '''
-        if not request or not request.headers.has_key('Authorization'):
+        self.request = request
+        if request is None:
+            return None
+        if not request or not request.headers.get('Authorization'):
             return None
         return request.headers.get('Authorization')
 

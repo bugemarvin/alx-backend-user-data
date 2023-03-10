@@ -2,39 +2,20 @@
 """
 Route module for the API
 """
-from os import getenv
+from os import environ, getenv
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
-import os
 
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 auth = None
-auth = getenv('AUTH_TYPE')
-
+auth = environ.get('AUTH_TYPE')
 if auth:
     from api.v1.auth.auth import Auth
     auth = Auth()
-
-if auth is None:
-    exit
-dests = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
-paths = [x for x in dests]
-
-for values in paths:
-    if auth.require_auth not in dests:
-        pass
-    else:
-        auth.require_auth()
-
-if auth.authorization_header():
-    abort(401)
-
-if auth.current_user():
-    abort(403)
 
 
 @app.errorhandler(404)
@@ -56,6 +37,23 @@ def forbidden(error) -> str:
     '''Forbidden handler
     '''
     return jsonify({"error": "Forbidden"}), 403
+
+
+@app.before_request
+def before_request():
+    if not auth:
+        return
+    elif not auth.require_auth(request.path,
+                               ['/api/v1/status/',
+                                '/api/v1/unauthorized/',
+                                '/api/v1/forbidden/']):
+        return
+    elif not auth.authorization_header(request):
+        return abort(401)
+    elif not auth.current_user(request):
+        return abort(403)
+    else:
+        return
 
 
 if __name__ == "__main__":
