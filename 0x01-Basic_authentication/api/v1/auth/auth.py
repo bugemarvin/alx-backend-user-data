@@ -32,7 +32,7 @@ class Auth:
         '''creating user auth header for request
         '''
         self.request = request
-        if not request or 'Authorization' not in request.headers.get('Authorization'):
+        if not request or not request.headers.keys('Authorization'):
             return None
         return request.headers.get('Authorization')
 
