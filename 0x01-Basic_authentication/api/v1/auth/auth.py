@@ -16,19 +16,23 @@ class Auth:
         self.exclude_paths = excluded_paths
         if not path:
             return True
-        if not excluded_paths or len(excluded_paths) == 0:
+        elif not excluded_paths or len(excluded_paths) == 0:
             return True
-        for pwds in excluded_paths:
-            if path in pwds:
-                return False
-        if path not in excluded_paths:
-            return True
+        else:
+            for pwds in excluded_paths:
+                if path in pwds:
+                    return False
+            if path not in excluded_paths:
+                return True
+            if pwds.startswith('/') and '/' in pwds or pwds.endswith('/'):
+                path = pwds
+                return path
 
     def authorization_header(self, request=None) -> str:
         '''creating user auth header for request
         '''
         self.request = request
-        if not request or not request.headers.get('Authorization'):
+        if not request or 'Authorization' not in request.headers.get('Authorization'):
             return None
         return request.headers.get('Authorization')
 
