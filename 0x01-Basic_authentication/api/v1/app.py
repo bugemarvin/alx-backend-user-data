@@ -17,7 +17,7 @@ auth = environ.get('AUTH_TYPE')
 if auth:
     from api.v1.auth.auth import Auth
     auth = Auth()
-if auth == basic_auth:
+if basic_auth:
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
 
