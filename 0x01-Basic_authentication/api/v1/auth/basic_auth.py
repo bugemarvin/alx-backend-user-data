@@ -5,6 +5,10 @@ from api.v1.auth.auth import Auth
 
 
 class BasicAuth(Auth):
-    '''inherit from class Auth
+    '''creating a basicauth for header authorization
+        Return
+            - Base64 header
     '''
-    pass
+
+    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+        pass
