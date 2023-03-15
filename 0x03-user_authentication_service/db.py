@@ -10,9 +10,10 @@ from user import Base, User
 import typing
 
 
-class DB:
+class DB(User):
     """DB class
     """
+    id = User.id
 
     def __init__(self) -> None:
         """Initialize a new DB instance
@@ -35,8 +36,8 @@ class DB:
         """add_user
 
         Args:
-            User.email as email
-            User.hashed_password as hashed_password
+            from User.email as email
+            from User.hashed_password as hashed_password
 
         Returns:
             user as an object in db from email with hashed_password
@@ -50,5 +51,4 @@ class DB:
             my_session.commit()
         except Exception:
             user = None
-            my_session.close()
         return user
